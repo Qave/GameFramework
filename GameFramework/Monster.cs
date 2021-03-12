@@ -23,8 +23,8 @@ namespace GameFramework
             Boss
         }
 
-        public Monster(string name, CreatureType creatureType, int hitPoints)
-            : base(hitPoints)
+        public Monster(string name, CreatureType creatureType, int hitPoints, int posX, int posY)
+            : base(hitPoints, posX, posY)
         {
             _name = name;
             _creatureType = creatureType;

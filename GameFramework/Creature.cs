@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameFramework
 {
-    public class Creature : Position
+    public abstract class Creature : Position
     {
         // Global creatue class. Should be inherited from Player, and Creatue, perhaps boss/ or strong/elite monsters?
 
@@ -42,17 +42,9 @@ namespace GameFramework
             _hitPoints = hitPoints;
         }
 
-        public void Attack()
-        {
 
-        }
-        public void ReceiveHit()
-        {
-
-        }
-        public void DropLoot()
-        {
-
-        }
+        public abstract void Attack();
+        public abstract void ReceiveHit();
+        public abstract void DropLoot();
     }
 }
