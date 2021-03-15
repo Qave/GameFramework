@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GameFramework.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GameFramework
 {
-    public abstract class Creature : Position
+    public abstract class Creature : Position, IWorldObject
     {
         // Global creatue class. Should be inherited from Player, and Creatue, perhaps boss/ or strong/elite monsters?
 
@@ -21,7 +22,7 @@ namespace GameFramework
         public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
 
         /// <summary>
-        /// Bool to determine the state of the creatue Alive/Dead. Creature object gets destroyed on true.
+        /// Bool to determine the state of the creatue. Alive/Dead. Creature object gets destroyed on true.
         /// </summary>
         public bool IsDead { get { return _isDead; } set { _isDead = value; } }
         /// <summary>
@@ -37,8 +38,9 @@ namespace GameFramework
 
         public Creature(int hitPoints, int posX, int posY) : base(posX, posY)
         {
+            _damageModifier = 0;
+            _defenceModifier = 0;
             _isDead = false;
-
             _hitPoints = hitPoints;
         }
 
@@ -46,5 +48,15 @@ namespace GameFramework
         public abstract void Attack();
         public abstract void ReceiveHit();
         public abstract void DropLoot();
+
+        public void PlaceObjectInWorld(IWorldObject _object, Position position, int size = 1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DestroyObject(IWorldObject _object)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace GameFramework.Interfaces
 {
-    public interface ICreatureActions
+    public interface ILootable
     {
-        public void Attack();
-        public void ReceiveHit();
+        public void OnLooting(IWorldObject worldObject);
+
     }
 }

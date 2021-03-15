@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameFramework;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,7 +10,8 @@ namespace GamePlatform
     {
         static void Main(string[] args)
         {
-           // Console.SetCursorPosition(0,0); No flickering in console window
+            // Console.SetCursorPosition(0,0); No flickering in console window
+            
         }
 
     }
