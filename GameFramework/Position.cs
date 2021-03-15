@@ -9,8 +9,8 @@ namespace GameFramework
         private int _posX;
         private int _posY;
 
-        public int PosX { get; set; }
-        public int PosY { get; set; }
+        public int PosX { get { return _posX; } set { _posX = value; } }
+        public int PosY { get { return _posY; } set { _posY = value; } }
         public Position(int posX, int posY)
         {
             _posX = posX;

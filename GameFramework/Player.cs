@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using static System.Console;
 
 namespace GameFramework
 {
@@ -12,11 +13,16 @@ namespace GameFramework
 
         //Private Fields
         private string _name;
-        private Position _position;
-        
+        private string _marker; // Fra XML?
+        private ConsoleColor _playerColor; // Fra XML ?
         //Public Properties
         public string Name { get { return _name; } set { _name = value; } }
-        public string Icon { get { return "O"; } }
+
+        /// <summary>
+        /// The players position in the gameworld grid; x, y
+        /// </summary>
+        public Position Position;
+
         /// <summary>
         /// Instantiates a new Player object
         /// </summary>
@@ -24,10 +30,23 @@ namespace GameFramework
         /// <param name="hitPoints">Hit Points. 0 = dead</param>
         /// <param name="posX">The Player object's starting X position</param>
         /// <param name="posY">The Player object's starting Y position</param>
-        public Player(string name, int hitPoints, int posX, int posY) : base(hitPoints, posX, posY)
+        public Player(string name, int hitPoints, Position position) : base(hitPoints)
         {
-            
+            Position = position;
             _name = name;
+
+            _marker = "O";
+
+            _playerColor = ConsoleColor.Red;
+        }
+
+        // Refactor, World has a draw function too, make draw function in IWorldObject?
+        public void Draw()
+        {
+            ForegroundColor = _playerColor;
+            SetCursorPosition(Position.PosX, Position.PosY);
+            Write(_marker);
+            ResetColor();
         }
 
         public override void Attack() { }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameFramework
 {
-    public abstract class Creature : Position, IWorldObject
+    public abstract class Creature : IWorldObject
     {
         // Global creatue class. Should be inherited from Player, and Creatue, perhaps boss/ or strong/elite monsters?
 
@@ -36,7 +36,7 @@ namespace GameFramework
         public double DefenceModifier { get { return _defenceModifier; } set { _defenceModifier = value; } }
 
 
-        public Creature(int hitPoints, int posX, int posY) : base(posX, posY)
+        public Creature(int hitPoints)
         {
             _damageModifier = 0;
             _defenceModifier = 0;
@@ -49,12 +49,11 @@ namespace GameFramework
         public abstract void ReceiveHit();
         public abstract void DropLoot();
 
-        public void PlaceObjectInWorld(IWorldObject _object, Position position, int size = 1)
+        public void Draw(IWorldObject _object, Position position, int size = 1)
         {
             throw new NotImplementedException();
         }
-
-        public void DestroyObject(IWorldObject _object)
+        public void Destroy(IWorldObject _object)
         {
             throw new NotImplementedException();
         }

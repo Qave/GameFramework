@@ -9,17 +9,11 @@ namespace GameFramework.Handlers
         public static List<Monster> CreateMonsters()
         {
             List<Monster> _monsters = new List<Monster>();
-            
+            Position pos = new Position(rnd.Next(1, worldSizeX), rnd.Next(1, worldSizeY));
             int AmountOfMonsters = rnd.Next(2, 5); // ska hentes fra Xml Config
             for (int i = 0; i < AmountOfMonsters; i++)
             {
-                _monsters.Add(new Monster(
-                    RndName(),
-                    (Monster._Type)rnd.Next(0, 3),
-                    GetInitialHitPoints(rnd.Next(1, 4)),
-                    rnd.Next(1, worldSizeX),
-                    rnd.Next(1, worldSizeY)
-                    ));
+                _monsters.Add(new Monster(RndName(),(Monster._Type)rnd.Next(0, 3),GetInitialHitPoints(rnd.Next(1, 4)), pos));
             }
             return _monsters;
         }

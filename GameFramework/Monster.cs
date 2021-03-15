@@ -10,12 +10,11 @@ namespace GameFramework
         // Private Fields
         private string _name;
         private _Type _creatureType;
-        private Position _position;
 
         // Public Properties
         public string Name { get { return _name; } set { _name = value; } }
         public string Icon { get { return "¤"; } }
-
+        public Position Position { get; set; }
         // Enums
         public enum _Type
         {
@@ -25,9 +24,9 @@ namespace GameFramework
             Boss = 400
         }
 
-        public Monster(string name, _Type creatureType, int hitPoints, int posX, int posY) : base(hitPoints, posX, posY)
-        {
-            
+        public Monster(string name, _Type creatureType, int hitPoints, Position position) : base(hitPoints)
+        {      
+            Position = position;
             _name = name;
             _creatureType = creatureType;
         }
