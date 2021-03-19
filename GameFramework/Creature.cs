@@ -55,6 +55,7 @@ namespace GameFramework
         }
         public void Destroy(IWorldObject _object)
         {
+            // Set current position = ""?
             throw new NotImplementedException();
         }
     }

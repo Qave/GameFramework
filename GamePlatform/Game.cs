@@ -1,4 +1,5 @@
 ﻿using GameFramework;
+using GameFramework.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,21 +18,15 @@ namespace GamePlatform
 
         public void Start()
         {
-            string[,] grid =
-            {
-                { "─", "─", "─", "─", "─", "─", "─", "─" },
-                { "|", " ", " ", " ", " ", " ", " ", "X" },
-                { "|", " ", " ", " ", " ", " ", " ", "|" },
-                { "|", " ", " ", " ", " ", " ", " ", "|" },
-                { "|", " ", " ", " ", " ", " ", " ", "|" },
-                { "─", "─", "─", "─", "─", "─", "─", "─"  },
-            };
+            string[,] grid = LevelParser.ParseTxtFileToArray("Levels/Level_one.txt");
+            Title = "GameFramework";
 
             _world = new World(grid);
-            _player = new Player("Niels", 140, new Position(1,1));
+
+            _player = new Player("Niels", 140, new Position(1, 1));
 
             RunGameLoop();
-            ReadKey(true);        
+            //ReadKey(true);        
         }
         private void DrawFrame()
         {
@@ -58,7 +53,7 @@ namespace GamePlatform
                     {
                         _player.Position.PosY += 1;
                     }
-                    break;              
+                    break;
                 case ConsoleKey.LeftArrow:
                     if (_world.IsNextPositionWalkable(_player.Position.PosX - 1, _player.Position.PosY))
                     {

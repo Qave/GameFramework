@@ -13,8 +13,8 @@ namespace GameFramework
 
         //Private Fields
         private string _name;
-        private string _marker; // Fra XML?
-        private ConsoleColor _playerColor; // Fra XML ?
+        private readonly string _marker; // Fra XML?
+        private readonly ConsoleColor _playerColor; // Fra XML ?
         //Public Properties
         public string Name { get { return _name; } set { _name = value; } }
 
@@ -34,9 +34,7 @@ namespace GameFramework
         {
             Position = position;
             _name = name;
-
             _marker = "O";
-
             _playerColor = ConsoleColor.Red;
         }
 

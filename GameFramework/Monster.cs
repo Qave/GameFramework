@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static GameFramework.Enums.MonsterTypes;
 
 namespace GameFramework
 {
@@ -9,26 +10,21 @@ namespace GameFramework
     {
         // Private Fields
         private string _name;
-        private _Type _creatureType;
+        public MonsterType _monsterType;
 
         // Public Properties
         public string Name { get { return _name; } set { _name = value; } }
         public string Icon { get { return "¤"; } }
         public Position Position { get; set; }
+        public MonsterType Monster_Type { get { return _monsterType; } set { _monsterType = value; } }
         // Enums
-        public enum _Type
-        {
-            Weak = 100,
-            Normal = 200,
-            Strong = 250,
-            Boss = 400
-        }
+        
 
-        public Monster(string name, _Type creatureType, int hitPoints, Position position) : base(hitPoints)
+        public Monster(string name, MonsterType monsterType, int hitPoints, Position position) : base(hitPoints)
         {      
             Position = position;
             _name = name;
-            _creatureType = creatureType;
+            _monsterType = monsterType;
         }
         public override void Attack() { }
         public override void ReceiveHit() { }
