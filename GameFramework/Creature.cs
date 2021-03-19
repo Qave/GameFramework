@@ -45,9 +45,9 @@ namespace GameFramework
         }
 
 
-        public abstract void Attack();
-        public abstract void ReceiveHit();
-        public abstract void DropLoot();
+        //public abstract void Attack();
+        //public abstract void ReceiveHit();
+        //public abstract void DropLoot();
 
         public void Draw(IWorldObject _object, Position position, int size = 1)
         {
