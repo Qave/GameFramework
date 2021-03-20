@@ -5,58 +5,28 @@ using System.Text;
 
 namespace GameFramework
 {
-    public abstract class Creature : IWorldObject
+    public abstract class Creature : ICreature
     {
         // Global creatue class. Should be inherited from Player, and Creatue, perhaps boss/ or strong/elite monsters?
 
         //Private Fields
-        private int _hitPoints;
-        private bool _isDead;
-        private double _damageModifier;
-        private double _defenceModifier;
+        protected int _hitPoints;
+        protected bool _isDead;
+        protected double _damageModifier;
+        protected double _defenceModifier;
 
-        //Public Properties
-        /// <summary>
-        /// The Creatures Hit Points. If this reaches zero, IsDead should be set to true
-        /// </summary>
-        public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
-
-        /// <summary>
-        /// Bool to determine the state of the creatue. Alive/Dead. Creature object gets destroyed on true.
-        /// </summary>
-        public bool IsDead { get { return _isDead; } set { _isDead = value; } }
-        /// <summary>
-        /// Damage Modifier. This will increase the creatures damage output per hit. by x.x%
-        /// </summary>
-        public double DamageModifier { get { return _damageModifier; } set { _damageModifier = value; } }
-
-        /// <summary>
-        /// Defence Modifier. This will decrease the creatures recieved damage by x.x% 
-        /// </summary>
-        public double DefenceModifier { get { return _defenceModifier; } set { _defenceModifier = value; } }
-
-
-        public Creature(int hitPoints)
+        public Creature(int hitPoints, double damageModifier, double defenceModifier)
         {
-            _damageModifier = 0;
-            _defenceModifier = 0;
+            _damageModifier = damageModifier;
+            _defenceModifier = defenceModifier;
             _isDead = false;
             _hitPoints = hitPoints;
         }
 
+        public virtual int HitPoints { get { return _hitPoints; } }
+        public virtual bool IsDead { get { return _isDead; } }
+        public virtual double DamageModifier { get { return _damageModifier; } }
+        public virtual double DefenceModifier { get { return _defenceModifier; } }
 
-        //public abstract void Attack();
-        //public abstract void ReceiveHit();
-        //public abstract void DropLoot();
-
-        public void Draw(IWorldObject _object, Position position, int size = 1)
-        {
-            throw new NotImplementedException();
-        }
-        public void Destroy(IWorldObject _object)
-        {
-            // Set current position = ""?
-            throw new NotImplementedException();
-        }
     }
 }

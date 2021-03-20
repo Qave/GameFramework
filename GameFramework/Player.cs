@@ -46,9 +46,5 @@ namespace GameFramework
             Write(_marker);
             ResetColor();
         }
-
-        public override void Attack() { }
-        public override void ReceiveHit() { }
-        public override void DropLoot() { }
     }
 }

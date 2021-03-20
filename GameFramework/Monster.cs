@@ -26,8 +26,6 @@ namespace GameFramework
             _name = name;
             _monsterType = monsterType;
         }
-        public override void Attack() { }
-        public override void ReceiveHit() { }
-        public override void DropLoot() { }
+
     }
 }
