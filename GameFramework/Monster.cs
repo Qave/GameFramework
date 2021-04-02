@@ -27,5 +27,9 @@ namespace GameFramework
             _monsterType = monsterType;
         }
 
+        public override void AddDamage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

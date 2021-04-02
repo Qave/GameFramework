@@ -5,10 +5,11 @@ using System.Text;
 
 namespace GameFramework.Decorators
 {
-    public abstract class CreatureDecorator : ICreature, IItem
+    public abstract class CreatureDecorator : Creature
     {
-        public string ItemName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected CreatureDecorator(int hitPoints) : base(hitPoints)
+        {
+        }
     }
 }
 
-// ICreature attackDec = new AttackDecorator(item, monster);

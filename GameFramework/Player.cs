@@ -46,5 +46,10 @@ namespace GameFramework
             Write(_marker);
             ResetColor();
         }
+
+        public override void AddDamage()
+        {
+            this.Damage = this.Damage;
+        }
     }
 }
