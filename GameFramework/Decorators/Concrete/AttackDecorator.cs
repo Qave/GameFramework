@@ -8,8 +8,8 @@ namespace GameFramework.Decorators.Concrete
     public class AttackDecorator : CreatureDecorator
     {
 
-        Creature _creature;
-        public AttackDecorator(Creature creature) : base(0)
+        ICreature _creature;
+        public AttackDecorator(ICreature creature) : base(0)
         {
             _creature = creature;
         }

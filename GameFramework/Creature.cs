@@ -5,9 +5,9 @@ using System.Text;
 
 namespace GameFramework
 {
-    public abstract class Creature
+    public abstract class Creature : ICreature
     {
-        // Global creature class. Should be inherited from Player, and Creatue, perhaps boss/ or strong/elite monsters?
+        
 
         //Private Fields
         protected int _hitPoints;
@@ -25,9 +25,7 @@ namespace GameFramework
 
         public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
         public bool IsDead { get { return _isDead; } set { _isDead = value; } }
-
         public double Damage { get { return _damage; } set { _damage = value; } }
-        
         public double Defence { get { return _defence; } set { _defence = value; } }
 
         // Abstract methods

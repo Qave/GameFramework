@@ -6,12 +6,9 @@ namespace GameFramework.Interfaces
 {
     public interface ICreature
     {
-        //public int HitPoints { get; set; }
-        //public bool IsDead { get; set; }
-        //public double Damage {
-        //    get;
-        //    set;
-        //}
-        //public double Defence { get; set; }
+        int HitPoints { get; set; }
+        bool IsDead { get; set; }
+        double Damage { get; set; }
+        double Defence { get; set; }
     }
 }
