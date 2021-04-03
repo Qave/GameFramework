@@ -15,7 +15,6 @@ namespace GameFramework.Decorators.Concrete
         }
 
 
-
         public override void AddDamage()
         {
             this.Damage += 10;
