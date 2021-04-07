@@ -8,10 +8,10 @@ namespace GameFramework.Decorators.Concrete
     public class AttackDecorator : CreatureDecorator
     {
 
-        //readonly ICreature _creature;
+        public ICreature _creature;
         public AttackDecorator(ICreature creature) : base(0, new Position(creature.Position.PosX, creature.Position.PosY))
         {
-            //_creature = creature;
+            _creature = creature;
         }
 
 

@@ -17,6 +17,7 @@ namespace GameFramework
         private readonly string[,] _grid;
         private int _rows;
         private int _cols;
+        //private IWorldObject _worldObject;
         //private static int _stage = 0;
 
         //Public Properties
@@ -27,7 +28,6 @@ namespace GameFramework
 
         //Dependencies
         public Creature _creature;
-        public IWorldObject _worldObject;
         public Player _player;
         public List<Monster> _monsters;
 

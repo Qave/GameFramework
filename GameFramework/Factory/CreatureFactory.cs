@@ -1,6 +1,7 @@
 ﻿using GameFramework.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static GameFramework.Enums.MonsterTypes;
 
@@ -52,7 +53,7 @@ namespace GameFramework.Factory
         // Not used
         public ICreature CreateNewPlayer()
         {
-            ICreature temp = new Player("Qave", 400, RndPos());
+            ICreature temp = new Player("Qave", 400, new Position(1, 2));
             _world.WorldObjects.Add(temp);
             return temp;
         }
@@ -74,10 +75,21 @@ namespace GameFramework.Factory
 
         private Position RndPos()
         {
-            // TODO
-            // Generate a new pos, if new position is occupied or != " ", skip and try again. if loop is done, return "All possible positions have been filled." or something.. 
+            Position newPos = new Position(rnd.Next(1, _world.SizeX - 1), rnd.Next(1, _world.SizeY - 1));
+            List<(int,int)> ExistingPositions = new List<(int, int)>();
+            foreach (var item in _world.WorldObjects)
+            {
+                ExistingPositions.Add((item.Position.PosX, item.Position.PosY));
+            }
 
-            return new Position(rnd.Next(1, _world.SizeX - 1), rnd.Next(1, _world.SizeY - 1));
+
+            if (ExistingPositions.Contains((newPos.PosX, newPos.PosY)))
+            {
+                RndPos();
+            }
+
+                      
+            return newPos;
         }
     }
 }

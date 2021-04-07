@@ -10,7 +10,6 @@ namespace GameFramework.Interfaces
         bool IsDead { get; set; }
         double Damage { get; set; }
         double Defence { get; set; }
-        Position Position { get; set; }
         void Draw();
     }
 }

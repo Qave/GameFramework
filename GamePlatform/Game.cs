@@ -36,12 +36,15 @@ namespace GamePlatform
 
             // Factory for creating creatures for the world. CAN include a player creature
             CreatureFactory fac = new CreatureFactory(_world);
+            List<IWorldObject> t = _world.WorldObjects;
+
+            // Generates the player. Since the method has a fixed position for the player, create the player first.
+            _player = (Player)fac.CreateNewPlayer();
 
             // Generates a list of monsters to put into the world.
-            monsters = fac.CreateNewMonsterList(10);
+            monsters = fac.CreateNewMonsterList(4);
 
-            // Generates the player
-            _player = (Player)fac.CreateNewPlayer();
+
 
 
 
