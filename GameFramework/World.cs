@@ -1,4 +1,5 @@
-﻿using GameFramework.Interfaces;
+﻿using GameFramework.Factory;
+using GameFramework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,14 +14,16 @@ namespace GameFramework
         // Handle staging inside this class, statically, more mobs per stage?
 
         // Private Fields
-        private string[,] _grid;
+        private readonly string[,] _grid;
         private int _rows;
         private int _cols;
-        private static int _stage = 0;
+        //private static int _stage = 0;
 
         //Public Properties
         public int SizeY { get => _rows; set { _rows = value; } }
         public int SizeX { get => _cols; set { _cols = value; } }
+
+        public List<IWorldObject> WorldObjects { get; set; }
 
         //Dependencies
         public Creature _creature;
@@ -36,12 +39,15 @@ namespace GameFramework
         /// <param name="worldLevel">The world level. To be implemented</param>
         public World(string[,] grid)
         {
+            WorldObjects = new List<IWorldObject>();
+
             // World size, playername ka hentes fra Xml Config
             //_monsters = monsters;
             //_player = player;
             _grid = grid;
             _rows = grid.GetLength(0);
             _cols = grid.GetLength(1);
+
 
         }
 

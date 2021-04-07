@@ -4,11 +4,13 @@ using System.Text;
 
 namespace GameFramework.Interfaces
 {
-    public interface ICreature
+    public interface ICreature : IWorldObject
     {
         int HitPoints { get; set; }
         bool IsDead { get; set; }
         double Damage { get; set; }
         double Defence { get; set; }
+        Position Position { get; set; }
+        void Draw();
     }
 }

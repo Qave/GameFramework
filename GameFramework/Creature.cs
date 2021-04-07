@@ -14,13 +14,14 @@ namespace GameFramework
         protected bool _isDead;
         protected double _damage;
         protected double _defence;
-
-        public Creature(int hitPoints)
+        protected Position _position;
+        public Creature(int hitPoints, Position position)
         {
             _damage = 10;
             _defence = 50;
             _isDead = false;
             _hitPoints = hitPoints;
+            _position = position;
         }
 
         public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
@@ -28,7 +29,12 @@ namespace GameFramework
         public double Damage { get { return _damage; } set { _damage = value; } }
         public double Defence { get { return _defence; } set { _defence = value; } }
 
+        public Position Position { get { return _position; } set { _position = value; } }
+
+
+
         // Abstract methods
         public abstract void AddDamage();
+        public abstract void Draw();
     }
 }

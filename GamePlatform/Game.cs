@@ -1,9 +1,12 @@
 ﻿using GameFramework;
+using GameFramework.Factory;
 using GameFramework.Handlers;
+using GameFramework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using static GameFramework.Enums.MonsterTypes;
 using static System.Console;
 
 namespace GamePlatform
@@ -15,26 +18,50 @@ namespace GamePlatform
     {
         private World _world;
         private Player _player;
+        private List<ICreature> monsters;
 
-        public void Start()
+        public void Start() 
         {
-            string[,] grid = LevelParser.ParseTxtFileToArray("Levels/Level_one.txt");
-            Title = "GameFramework";
+            // Game Initialization
 
+            // Console window title
+            Title = "GameFramework";
+            // instantiates the list of monsters, ready to be populated
+            monsters = new List<ICreature>();
+            // Create a new level
+            string[,] grid = LevelParser.ParseTxtFileToArray("Levels/Level_one.txt");
+
+            // Generate the World based on the grid
             _world = new World(grid);
 
-            _player = new Player("Niels", 140, new Position(1, 1));
+            // Factory for creating creatures for the world. CAN include a player creature
+            CreatureFactory fac = new CreatureFactory(_world);
+
+            // Generates a list of monsters to put into the world.
+            monsters = fac.CreateNewMonsterList(10);
+
+            // Generates the player
+            _player = (Player)fac.CreateNewPlayer();
+
+
 
             RunGameLoop();
-            //ReadKey(true);        
+            //ReadKey(true);
         }
         private void DrawFrame()
         {
             CursorVisible = false;
             SetCursorPosition(0, 0);
-            //Clear();
             _world.Draw();
             _player.Draw();
+
+
+            // draw all monsters
+            foreach (ICreature monster in monsters)
+            {
+                monster.Draw();
+            }
+
         }
         private void HandlePlayerInput()
         {

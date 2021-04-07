@@ -11,8 +11,8 @@ namespace GameFramework.Handlers
         {
             string[] lines = File.ReadAllLines(filePath);
             string firstLine = lines[0];
-            int rows = lines.Length;
-            int cols = firstLine.Length;
+            int rows = lines.Length; // World Size X
+            int cols = firstLine.Length; // World Size Y
             string[,] grid = new string[rows, cols];
 
             for (int y = 0; y < rows; y++)

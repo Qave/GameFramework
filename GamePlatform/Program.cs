@@ -12,16 +12,16 @@ namespace GamePlatform
     {
         static void Main(string[] args)
         {
-            // Console.SetCursorPosition(0,0); No flickering in console window, also you can control placement of objects this way.
+            //Console.SetCursorPosition(0, 0); No flickering in console window, also you can control placement of objects this way.
 
-            //Game game = new Game();
-            //game.Start();
+            Game game = new Game();
+            game.Start();
 
 
 
-            GameConfig conf = ReadGameConfigFile<GameConfig>();
-            Console.WriteLine(conf.PlayerName+  ", "+ conf.PlayerMarker);
-            Console.ReadLine();
+            //GameConfig conf = ReadGameConfigFile<GameConfig>();
+            //Console.WriteLine(conf.PlayerName+  ", "+ conf.PlayerMarker);
+            //Console.ReadLine();
         }
 
     }

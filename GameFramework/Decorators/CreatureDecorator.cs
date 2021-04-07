@@ -7,7 +7,7 @@ namespace GameFramework.Decorators
 {
     public abstract class CreatureDecorator : Creature
     {
-        protected CreatureDecorator(int hitPoints) : base(hitPoints)
+        protected CreatureDecorator(int hitPoints, Position position) : base(hitPoints, position)
         {
         }
     }
