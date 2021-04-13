@@ -12,11 +12,12 @@ namespace TestGameFramework
     public class TestFramework
     {
         Creature player;
-
+        //World world;
         [TestInitialize]
         public void TestSetup()
         {
             player = new Player("Tester", 400, new Position(2, 10));
+            //world = new World(new string[20,20]);
         }
         [TestMethod]
         public void TestBaseAttack()

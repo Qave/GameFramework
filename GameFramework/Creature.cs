@@ -1,5 +1,7 @@
 ﻿using GameFramework.Interfaces;
+using GameFramework.Items.Interface;
 using GameFramework.Logging.Interface;
+using GameFramework.Observer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +17,9 @@ namespace GameFramework
         protected double _damage;
         protected double _defence;
         protected Position _position;
+
+
+        public List<IItem> Items { get; set; } // > ICreature > IItem
         public Creature(int hitPoints, Position position)
         {
             _damage = 10;
@@ -24,12 +29,28 @@ namespace GameFramework
             _position = position;        
         }
 
-        public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
+        public int HitPoints { 
+            get 
+            {
+                return _hitPoints;
+            }
+            set
+            { 
+                _hitPoints = value;
+                
+            } 
+        }
         public bool IsDead { get { return _isDead; } set { _isDead = value; } }
-        public double Damage { get { return _damage; } set { _damage = value; } }
+        public double Damage { get { return _damage; } 
+            set 
+            { 
+                _damage = value;              
+            }
+        }
         public double Defence { get { return _defence; } set { _defence = value; } }
 
         public Position Position { get { return _position; } set { _position = value; } }
+
 
 
 

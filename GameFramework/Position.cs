@@ -16,5 +16,14 @@ namespace GameFramework
             _posX = posX;
             _posY = posY;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        public override bool Equals(object obj)
+        {
+            return PosX == (obj as Position).PosX && PosY == (obj as Position).PosY;
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using GameFramework.Factory;
 using GameFramework.Interfaces;
+using GameFramework.Observer;
+using GameFramework.Observer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +9,7 @@ using static System.Console;
 
 namespace GameFramework
 {
-    public class World
+    public class World : IObserver
     {
 
         // On world creation, initialize a random amount of monsters, lootables, maybe walls?? and an exit ?? / unlock after killing boss?
@@ -30,6 +32,7 @@ namespace GameFramework
         public Creature _creature;
         public Player _player;
         public List<Monster> _monsters;
+        public CreatureObserver CreatureObserver { get; set; } = new CreatureObserver();
 
         /// <summary>
         /// World Creation
@@ -47,7 +50,7 @@ namespace GameFramework
             _grid = grid;
             _rows = grid.GetLength(0);
             _cols = grid.GetLength(1);
-
+            CreatureObserver.Add(this);
 
         }
 
@@ -80,7 +83,12 @@ namespace GameFramework
             {
                 return false;
             }
-            return _grid[y, x] == " " || _grid[y,x] == "X";
+            return _grid[y, x] == " " || _grid[y, x] == "X";
+        }
+
+        public void Notify(ICreature creature)
+        {
+            throw new NotImplementedException("DIED?");
         }
     }
 }

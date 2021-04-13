@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using static GameFramework.Enums.MonsterTypes;
@@ -27,8 +28,11 @@ namespace GamePlatform
             // Game Initialization
 
             // Initiate logging
-            TraceSource traceSource = new TraceSource("GameFramework_Tracing");
-            traceSource.Switch = new SourceSwitch("EventTracing", "All");
+            TraceSource traceSource = new TraceSource("GameFramework_Tracing")
+            {
+                Switch = new SourceSwitch("EventTracing", "All")
+            };
+
             TraceListener eventLog = new TextWriterTraceListener(new StreamWriter("Events.txt"));
             traceSource.Listeners.Add(eventLog);
             eventLog.Filter = new EventTypeFilter(SourceLevels.All);
@@ -66,6 +70,7 @@ namespace GamePlatform
         {
             CursorVisible = false;
             SetCursorPosition(0, 0);
+
             _world.Draw();
             _player.Draw();
 
@@ -119,16 +124,57 @@ namespace GamePlatform
                 DrawFrame();
                 //Check for playerinput, then move the player or update accordingly
                 HandlePlayerInput();
-                //Check if the player has reached the exit and end the game if so
-                string elementAtPlayerPosition = _world.GetElementAt(_player.Position.PosX, _player.Position.PosY);
-                if (elementAtPlayerPosition == "X")
-                {
-                    Clear();
-                    Console.WriteLine("You Won!");
-                    ReadKey();
-                }
+                FindWorldObjectAtPosition(_player.Position);
                 //Give the console a chance to render
                 Thread.Sleep(20);
+            }
+        }
+
+        private void CheckOnPosition()
+        {
+            //Check if the player has reached the exit and end the game if so
+            string elementAtPlayerPosition = _world.GetElementAt(_player.Position.PosX, _player.Position.PosY);
+            switch (elementAtPlayerPosition)
+            {
+                case "X":
+                    Clear();
+                    WriteLine("You Won!");
+                    ReadKey();
+                    break;
+                case "M":
+                    break;
+                default:
+                    FindWorldObjectAtPosition(new Position(_player.Position.PosX, _player.Position.PosY));
+                    break;
+            }
+        }
+
+        private void FindWorldObjectAtPosition(Position playerPosition)
+        {
+            IWorldObject foundObject = null;
+
+            var ElementAtPlayerPosition = _world.WorldObjects.FindAll(e => e.Position.PosX == playerPosition.PosX && e.Position.PosY == playerPosition.PosY);
+            if (ElementAtPlayerPosition.Count() == 2)
+            {
+                foundObject = ElementAtPlayerPosition.Where(e => e != _player).Single();
+
+                switch (foundObject)
+                {
+                    case Monster monster:
+                        EnterCombat(_player, monster);
+                        break;
+                    default:
+
+                        break;
+                }
+            }       
+        }
+        private void EnterCombat(Player player, Monster monster)
+        {
+            Clear();
+            while (!player.IsDead && !monster.IsDead) 
+            {
+                // TODO
             }
         }
     }

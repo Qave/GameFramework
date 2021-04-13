@@ -34,6 +34,7 @@ namespace GameFramework
         /// <param name="posY">The Player object's starting Y position</param>
         public Player(string name, int hitPoints, Position position) : base(hitPoints, position)
         {
+            
             Position = position;
             _name = name;
             _marker = "O";
