@@ -1,6 +1,5 @@
 ﻿using GameFramework.Interfaces;
 using GameFramework.Logging.Interface;
-using GameFramework.Observer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
