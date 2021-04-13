@@ -1,14 +1,15 @@
 ﻿using GameFramework.Interfaces;
+using GameFramework.Logging.Interface;
+using GameFramework.Observer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameFramework
 {
     public abstract class Creature : ICreature
     {
-        
-
         //Private Fields
         protected int _hitPoints;
         protected bool _isDead;
@@ -21,7 +22,7 @@ namespace GameFramework
             _defence = 50;
             _isDead = false;
             _hitPoints = hitPoints;
-            _position = position;
+            _position = position;        
         }
 
         public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
@@ -36,5 +37,9 @@ namespace GameFramework
         // Abstract methods
         public abstract void AddDamage();
         public abstract void Draw();
+
+
+
+
     }
 }

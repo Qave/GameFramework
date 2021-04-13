@@ -1,4 +1,5 @@
-﻿using GameFramework.Interfaces;
+﻿using GameFramework.Config;
+using GameFramework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +8,7 @@ using static System.Console;
 
 namespace GameFramework
 {
-    public class Player : Creature
+    public class Player : Creature //  > ICreature, > IWorldObject
     {
         // The player object. Should contain things only relevant for the player.
 

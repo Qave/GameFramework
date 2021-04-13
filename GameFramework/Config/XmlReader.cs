@@ -8,32 +8,11 @@ namespace GameFramework.Config
 {
     public class XmlReader
     {
-        public class GameConfig
+        public static GameConfig ReadGameConfigFile()
         {
-            //// World
-            //public int WorldSizeX { get; set; }
-            //public int WorldSizeY { get; set; }
-
-            // Player
-            public string PlayerName { get; set; }
-            public string PlayerMarker { get; set; }
-
-
-            public GameConfig(){}
-
-            public override string ToString()
-            {
-                return $"Player name: {PlayerName}, Marker: {PlayerMarker}";
-            }
-        }
-
-
-
-        public static T ReadGameConfigFile<T>()
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), new XmlRootAttribute("GameConfig"));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(GameConfig), new XmlRootAttribute("GameConfig"));
             StreamReader reader = new StreamReader("GameConfig.xml");
-            var x = (T)xmlSerializer.Deserialize(reader);
+            var x = (GameConfig)xmlSerializer.Deserialize(reader);
             reader.Close();
             
             return x;

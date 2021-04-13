@@ -4,6 +4,8 @@ using GameFramework.Handlers;
 using GameFramework.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading;
 using static GameFramework.Enums.MonsterTypes;
@@ -24,8 +26,17 @@ namespace GamePlatform
         {
             // Game Initialization
 
+            // Initiate logging
+            TraceSource traceSource = new TraceSource("GameFramework_Tracing");
+            traceSource.Switch = new SourceSwitch("EventTracing", "All");
+            TraceListener eventLog = new TextWriterTraceListener(new StreamWriter("Events.txt"));
+            traceSource.Listeners.Add(eventLog);
+            eventLog.Filter = new EventTypeFilter(SourceLevels.All);
+
             // Console window title
             Title = "GameFramework";
+
+
             // instantiates the list of monsters, ready to be populated
             monsters = new List<ICreature>();
             // Create a new level
@@ -35,8 +46,8 @@ namespace GamePlatform
             _world = new World(grid);
 
             // Factory for creating creatures for the world. CAN include a player creature
-            CreatureFactory fac = new CreatureFactory(_world);
-            List<IWorldObject> t = _world.WorldObjects;
+            CreatureFactory fac = new CreatureFactory(_world, traceSource);
+            //List<IWorldObject> t = _world.WorldObjects;
 
             // Generates the player. Since the method has a fixed position for the player, create the player first.
             _player = (Player)fac.CreateNewPlayer();
