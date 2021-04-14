@@ -169,6 +169,7 @@ namespace GamePlatform
                 }
             }       
         }
+        // Maybe not in game class??
         private void EnterCombat(Player player, Monster monster)
         {
             Clear();

@@ -36,8 +36,7 @@ namespace GameFramework
             }
             set
             { 
-                _hitPoints = value;
-                
+                _hitPoints = value;          
             } 
         }
         public bool IsDead { get { return _isDead; } set { _isDead = value; } }
@@ -57,9 +56,6 @@ namespace GameFramework
         // Abstract methods
         public abstract void AddDamage();
         public abstract void Draw();
-
-
-
 
     }
 }
