@@ -10,8 +10,10 @@ namespace GameFramework.Interfaces
         List<IItem> Items { get; set; }
         int HitPoints { get; set; }
         bool IsDead { get; set; }
-        double Damage { get; set; }
+        int Damage { get; set; }
         double Defence { get; set; }
         void Draw();
+        void Attacks(ICreature creature);
+        int CalculateDamage(int damageReceived);
     }
 }

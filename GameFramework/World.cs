@@ -88,6 +88,7 @@ namespace GameFramework
 
         public void Notify(ICreature creature)
         {
+            // Gets notified that a creature in the world has changed.
             throw new NotImplementedException("DIED?");
         }
     }

@@ -14,7 +14,7 @@ namespace GameFramework
         //Private Fields
         protected int _hitPoints;
         protected bool _isDead;
-        protected double _damage;
+        protected int _damage;
         protected double _defence;
         protected Position _position;
 
@@ -40,12 +40,13 @@ namespace GameFramework
             } 
         }
         public bool IsDead { get { return _isDead; } set { _isDead = value; } }
-        public double Damage { get { return _damage; } 
+        public int Damage { get { return _damage; } 
             set 
             { 
                 _damage = value;              
             }
         }
+
         public double Defence { get { return _defence; } set { _defence = value; } }
 
         public Position Position { get { return _position; } set { _position = value; } }
@@ -57,5 +58,17 @@ namespace GameFramework
         public abstract void AddDamage();
         public abstract void Draw();
 
+        public void Attacks(ICreature creature)
+        {
+            creature.HitPoints -= CalculateDamage(this.Damage);
+        }
+
+        public int CalculateDamage(int damageReceived)
+        {
+            int calculatedDamage = Convert.ToInt32(Math.Floor(damageReceived*(100 / (100 + this.Defence))));
+
+            return calculatedDamage;
+
+        }
     }
 }

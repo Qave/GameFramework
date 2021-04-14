@@ -130,24 +130,6 @@ namespace GamePlatform
             }
         }
 
-        private void CheckOnPosition()
-        {
-            //Check if the player has reached the exit and end the game if so
-            string elementAtPlayerPosition = _world.GetElementAt(_player.Position.PosX, _player.Position.PosY);
-            switch (elementAtPlayerPosition)
-            {
-                case "X":
-                    Clear();
-                    WriteLine("You Won!");
-                    ReadKey();
-                    break;
-                case "M":
-                    break;
-                default:
-                    FindWorldObjectAtPosition(new Position(_player.Position.PosX, _player.Position.PosY));
-                    break;
-            }
-        }
 
         private void FindWorldObjectAtPosition(Position playerPosition)
         {
