@@ -53,12 +53,6 @@ namespace GameFramework
             CreatureObserver.Add(this);
 
         }
-
-        public string GetElementAt(int x, int y)
-        {
-            return _grid[y, x];
-        }
-
         public void Draw()
         {
             for (int y = 0; y < _rows; y++)
@@ -74,22 +68,23 @@ namespace GameFramework
         /// <summary>
         /// Checks if the next position is walkable
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The X position in the grid</param>
+        /// <param name="y">The Y position in the grid</param>
         /// <returns></returns>
-        public bool IsNextPositionWalkable(int x, int y) // Maybe use to check for monsters????? engage in combat? lootables? equip?
+        public bool IsNextPositionWalkable(int x, int y)
         {
             if (x < 0 || y < 0 || x >= _cols || y >= _rows)
             {
                 return false;
             }
-            return _grid[y, x] == " " || _grid[y, x] == "X";
+            return _grid[y, x] == " ";
         }
 
         public void Notify(ICreature creature)
         {
             // Gets notified that a creature in the world has changed.
-            throw new NotImplementedException("DIED?");
+            creature.IsDead = true;
+            
         }
     }
 }

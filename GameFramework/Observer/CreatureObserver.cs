@@ -16,6 +16,7 @@ namespace GameFramework.Observer
         {
             Notify(creature);
         }
+
         private static void Notify(Creature creature)
         {
             foreach (var observer in _observers)

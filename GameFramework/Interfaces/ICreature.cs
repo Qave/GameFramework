@@ -7,13 +7,14 @@ namespace GameFramework.Interfaces
 {
     public interface ICreature : IWorldObject
     {
-        List<IItem> Items { get; set; }
+        //List<IItem> Items { get; set; }
+        string Name { get; set; }
         int HitPoints { get; set; }
         bool IsDead { get; set; }
         int Damage { get; set; }
         double Defence { get; set; }
-        void Draw();
         void Attacks(ICreature creature);
         int CalculateDamage(int damageReceived);
+        void PickUpItem(IItem item);
     }
 }

@@ -12,24 +12,19 @@ using static GameFramework.Enums.MonsterTypes;
 
 namespace GameFramework.Factory
 {
-    public class CreatureFactory : ITracing
+    public class CreatureFactory : AbstractFactory, ITracing
     {
         private readonly Random _rnd = new Random();
         private readonly GameConfig _conf = ConfigSingleton.Instance.GameConfig;
 
-        private readonly World _world;
         public int WorldSizeX { get; set; }
         public int WorldSizeY { get; set; }
-        public TraceSource TraceSource { get; set; }
 
-        public CreatureFactory(World world, TraceSource traceSource)
+        public CreatureFactory(World world, TraceSource traceSource) : base(world, traceSource)
         {
-            _world = world;
-
-            TraceSource = traceSource;
         }
 
-        public ICreature CreateNewPlayer()
+        public Player CreateNewPlayer()
         {
             Player temp = new Player(_conf.PlayerName, 400, new Position(1, 2));
             _world.WorldObjects.Add(temp);
@@ -43,7 +38,7 @@ namespace GameFramework.Factory
         /// </summary>
         /// <param name="monsterType">The monster type to create</param>
         /// <returns>Monster</returns>
-        public ICreature CreateNewMonster(MonsterType monsterType)
+        public Monster CreateNewMonster(MonsterType monsterType)
         {
             Monster returnedMonster = new Monster("Default", MonsterType.Weak, (int)MonsterType.Weak, RndPos());
             switch (monsterType)
@@ -69,26 +64,23 @@ namespace GameFramework.Factory
             return returnedMonster;
 
         }
+        public void CreateNewMonsterList(int noOfMonsters)
+        {
+            for (int i = 0; i < noOfMonsters; i++)
+            {
+                Monster temp = CreateNewMonster(GetRandomType());
+                _world.WorldObjects.Add(temp);
+            }
+        }      
 
         private readonly List<string> MonsterNames = new List<string>()
         {
             "Mephisto","Baal","Diablo", "Andariel","Duriel","Lilith","Lucion"
         };
-        public List<ICreature> CreateNewMonsterList(int noOfMonsters)
-        {
-            List<ICreature> monsterList = new List<ICreature>();
-            for (int i = 0; i < noOfMonsters; i++)
-            {
-                ICreature temp = CreateNewMonster(GetRandomType());
-
-                monsterList.Add(temp);
-                _world.WorldObjects.Add(temp);
-            }
-            return monsterList;
-        }      
         private MonsterType GetRandomType()
         {
             var enums = Enum.GetValues(typeof(MonsterType));
+
             return (MonsterType)enums.GetValue(_rnd.Next(1, enums.Length));
         }
         private string RndName()
@@ -96,23 +88,7 @@ namespace GameFramework.Factory
             Random rnd = new Random();
             return MonsterNames[rnd.Next(0, MonsterNames.Count)];
         }
-        private Position RndPos()
-        {
-            Position newPos = new Position(_rnd.Next(1, _world.SizeX - 1), _rnd.Next(1, _world.SizeY - 1));
-            List<(int,int)> ExistingPositions = new List<(int, int)>();
-            foreach (var item in _world.WorldObjects)
-            {
-                ExistingPositions.Add((item.Position.PosX, item.Position.PosY));
-            }
 
-
-            if (ExistingPositions.Contains((newPos.PosX, newPos.PosY)))
-            {
-                RndPos();
-            }
-
-                      
-            return newPos;
-        }
+        
     }
 }
