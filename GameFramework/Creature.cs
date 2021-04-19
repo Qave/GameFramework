@@ -28,8 +28,8 @@ namespace GameFramework
         public Creature(string name, int hitPoints, Position position)
         {
             _name = name;
-            _damage = 10;
-            _defence = 50;
+            _damage = 20;
+            _defence = 0;
             _isDead = false;
             _hitPoints = hitPoints;
             _position = position;        
@@ -43,7 +43,7 @@ namespace GameFramework
             set
             { 
                 _hitPoints = value;
-                if (_hitPoints < 0)
+                if (_hitPoints <= 0)
                 {
                     _hitPoints = 0;
                     CreatureObserver.OnDeath(this);
@@ -77,13 +77,13 @@ namespace GameFramework
 
         public void Attacks(ICreature creature)
         {
-            int calculatedDmg = CalculateDamage(this.Damage);
+            int calculatedDmg = CalculateDamage(this.Damage, creature);
             creature.HitPoints -= calculatedDmg;
-            WriteLine($"{Name} attacks {creature.Name} for {calculatedDmg} damage. {creature.Name} has {creature.HitPoints} left.");
+            WriteLine($"{Name} attacks {creature.Name} for {calculatedDmg} damage. {creature.Name} has {creature.HitPoints} hitpoints left.");
         }
-        public int CalculateDamage(int damageReceived)
+        public int CalculateDamage(int damageReceived, ICreature target)
         {
-            int calculatedDamage = Convert.ToInt32(Math.Floor(damageReceived*(100 / (100 + this.Defence))));
+            int calculatedDamage = Convert.ToInt32(Math.Floor(damageReceived*(100 / (100 + target.Defence))));
 
             return calculatedDamage;
 

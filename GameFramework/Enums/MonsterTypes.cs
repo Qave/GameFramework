@@ -8,10 +8,10 @@ namespace GameFramework.Enums
     {
         public enum MonsterType
         {
-            Weak = 100,
-            Normal = 200,
-            Strong = 250,
-            Boss = 400
+            Weak = 25,
+            Normal = 50,
+            Strong = 75,
+            Boss = 100
         }
     }
 }

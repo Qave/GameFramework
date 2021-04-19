@@ -26,7 +26,7 @@ namespace GameFramework.Factory
 
         public Player CreateNewPlayer()
         {
-            Player temp = new Player(_conf.PlayerName, 400, new Position(1, 2));
+            Player temp = new Player(_conf.PlayerName, 200, new Position(1, 2));
             _world.WorldObjects.Add(temp);
             TraceSource.TraceEvent(TraceEventType.Information, 1, $"Created player: {temp.Name} at position: {temp.Position.PosX},{temp.Position.PosY}");
             TraceSource.Flush();

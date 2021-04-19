@@ -14,7 +14,7 @@ namespace GameFramework.Interfaces
         int Damage { get; set; }
         double Defence { get; set; }
         void Attacks(ICreature creature);
-        int CalculateDamage(int damageReceived);
+        int CalculateDamage(int damageReceived, ICreature creature);
         void PickUpItem(IItem item);
     }
 }
